@@ -22,8 +22,9 @@ class MainActivity : AppCompatActivity() {
 
         val responseLiveData : LiveData<Response<Albums>> =
             liveData{
-                val response = retrofitService.getAlbums()
-                emit(response)
+                //val response = retrofitService.getAlbums()
+                val response2 = retrofitService.getSpecifiedAlbums(6)
+                emit(response2)
             }
 
         responseLiveData.observe(this, Observer {
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             if(albumsList!=null){
                 while(albumsList.hasNext()){
                     val albumItem = albumsList.next()
-                    Log.d("Vidoje", ""+albumItem.title)
 
                     val result =  "Album title: ${albumItem.title} \n"
                     tv.append(result)
